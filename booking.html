@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Booking - Hotel Indah</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="icon" href="images/fevicon.png" type="image/gif">
+    <style>
+      <style>
+  body {
+    animation: fadeIn 0.8s ease;
+    background-color: #fff;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .booking_section {
+    padding: 100px 0;
+    overflow: hidden;
+  }
+
+  .book_form, .preview_box {
+    background: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    transform: translateY(40px);
+    animation: slideUp 1s ease forwards;
+  }
+
+  /* Animasi muncul */
+  @keyframes slideUp {
+    0% {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Delay agar preview muncul sedikit setelah form */
+  .preview_box {
+    animation-delay: 0.3s;
+  }
+
+  .book_form h2 {
+    text-align: center;
+    color: #222;
+    font-weight: bold;
+    margin-bottom: 25px;
+  }
+
+  .book_form label {
+    font-weight: 500;
+    color: #333;
+  }
+
+  .preview_box {
+    text-align: center;
+    display: none;
+    transition: all 0.4s ease;
+  }
+
+  .preview_box img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+
+  .preview_box.show img {
+    opacity: 1;
+  }
+
+  .preview_box h4 {
+    color: #222;
+    margin-top: 10px;
+  }
+
+  .preview_box p {
+    font-weight: bold;
+    color: #ffb300;
+    font-size: 18px;
+  }
+
+  /* Tombol hover animasi lembut */
+  .book_btn {
+    transition: all 0.3s ease;
+  }
+
+  .book_btn:hover {
+    background-color: #ffb300;
+    color: #fff;
+    transform: scale(1.03);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
+/* ===== BACKGROUND SLIDESHOW ===== */
+.bg-slideshow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* biar di belakang konten */
+  overflow: hidden;
+}
+
+.bg-slideshow img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: bgFade 18s infinite;
+}
+
+.bg-slideshow img:nth-child(1) { animation-delay: 0s; }
+.bg-slideshow img:nth-child(2) { animation-delay: 6s; }
+.bg-slideshow img:nth-child(3) { animation-delay: 12s; }
+
+@keyframes bgFade {
+  0%   { opacity: 0; }
+  10%  { opacity: 1; }
+  30%  { opacity: 1; }
+  40%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+.logo img {
+    width: 90px;    /* kamu bisa ubah ke 70px, 80px, dll */
+    height: auto;   /* biar tidak gepeng */
+}
+
+.logo img {
+    margin-top: -10px; /* geser ke atas, bisa ubah ke -5px, -15px, dll */
+}
+
+</style>
+
+    </style>
+  </head>
+
+  <body class="main-layout">
+    <!-- Background Slideshow -->
+<div class="bg-slideshow">
+  <img src="images/banner1.jpg" alt="Background 1">
+  <img src="images/banner2.jpg" alt="Background 2">
+  <img src="images/banner3.jpg" alt="Background 3">
+</div>
+
+
+    <!-- Loader -->
+    <div class="loader_bg">
+      <div class="loader"><img src="images/loading.gif" alt="#" /></div>
+    </div>
+
+    <!-- Header & Navbar (dari template Keto) -->
+    <header>
+      <div class="header">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+              <div class="full">
+                <div class="center-desk">
+                  <div class="logo">
+                    <a href="index.html"><img src="images/logo.png" alt="#" style="width:140px; height:auto;"></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+              <nav class="navigation navbar navbar-expand-md navbar-dark">
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarsExample04" aria-controls="navbarsExample04"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarsExample04">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="room.html">Kamar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">Fasilitas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Kontak</a></li>
+                  </ul>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Booking Section -->
+    <section class="booking_section">
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- Kolom Kiri: Form -->
+      <div class="col-md-6">
+        <div class="book_form animate">
+          <h2>Formulir Booking</h2>
+          <form id="bookingForm">
+            <div class="mb-3">
+              <label>Nama Lengkap</label>
+              <input type="text" class="form-control online_book" name="name" placeholder="Masukkan nama lengkap" required>
+            </div>
+            <div class="mb-3">
+              <label>Email</label>
+              <input type="email" class="form-control online_book" name="email" placeholder="Masukkan email" required>
+            </div>
+            <div class="mb-3">
+              <label>Nomor Telepon</label>
+              <input type="tel" class="form-control online_book" name="phone" placeholder="08xxxxxxxxxx" required>
+            </div>
+            <div class="mb-3">
+              <label>Tanggal Check-In</label>
+              <input type="date" class="form-control online_book" name="checkin" required>
+            </div>
+            <div class="mb-3">
+              <label>Tanggal Check-Out</label>
+              <input type="date" class="form-control online_book" name="checkout" required>
+            </div>
+            <div class="mb-3">
+              <label>Pilih Kamar</label>
+              <select id="roomSelect" class="form-control online_book" required>
+                <option value="">-- Pilih Kamar --</option>
+                <option value="room1">Standard Room</option>
+                <option value="room2">Deluxe Room</option>
+                <option value="room3">Superior Room</option>
+                <option value="room4">Executive Room</option>
+                <option value="room5">Luxury Suite</option>
+                <option value="room6">Presidential Suite</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label>Nomor Kamar</label>
+              <input type="text" id="roomNumber" class="form-control online_book" readonly placeholder="Nomor kamar otomatis">
+            </div>
+            <button type="submit" class="book_btn w-100">Konfirmasi Booking</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Kolom Kanan: Preview -->
+      <div class="col-md-6">
+        <div class="preview_box animate" id="roomPreview">
+          <img id="roomImage" src="" alt="Room">
+          <h4 id="roomName"></h4>
+          <p id="roomPrice"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Footer dari Keto -->
+    footer>
+         <div class="footer">
+            <div class="container">
+               <div class="row">
+                  <div class=" col-md-4">
+                     <h3>Kontak Kami</h3>
+                     <ul class="conta">
+                        <li><i class="fa fa-map-marker" aria-hidden="true"></i> Address</li>
+                        <li><i class="fa fa-mobile" aria-hidden="true"></i> +08 1234569540</li>
+                        <li> <i class="fa fa-envelope" aria-hidden="true"></i><a href="#"> neisen@gmail.com</a></li>
+                     </ul>
+                  </div>
+                  <div class="col-md-4">
+                     <h3>Menu Link</h3>
+                     <ul class="link_menu">
+                        <li class="active"><a href="#">Beranda</a></li>
+                        <li><a href="about.html">Tentang</a></li>
+                        <li><a href="room.html">Kamar</a></li>
+                        <li><a href="blog.html">Fasilitas</a></li>
+                        <li><a href="contact.html">Kontak</a></li>
+                     </ul>
+                  </div>
+                  <div class="col-md-4">
+                     <h3>Kabar Baru</h3>
+                     <form class="bottom_form">
+                        <input class="enter" placeholder="Enter your email" type="text" name="Enter your email">
+                        <button class="sub_btn">subscribe</button>
+                     </form>
+                     <ul class="social_icon">
+                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+            <div class="copyright">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-10 offset-md-1">
+                        
+                        <p>
+                        © 2025 All Rights Reserved. Design by <a href="https://html.design/"> Neisen Ronga</a>
+                        <br><br>
+                        Website <a href="https://themewagon.com/" target="_blank">Neisen Ronga</a>
+                        </p>
+
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </footer>
+
+    <!-- Script kamar & validasi -->
+    <script>
+  const roomData = {
+    room1: { name: "Standard Room", price: "Rp 550.000 / malam", img: "images/room1.jpg", number: "101" },
+    room2: { name: "Deluxe Room", price: "Rp 650.000 / malam", img: "images/room2.jpg", number: "102" },
+    room3: { name: "Superior Room", price: "Rp 750.000 / malam", img: "images/room3.jpg", number: "103" },
+    room4: { name: "Executive Room", price: "Rp 900.000 / malam", img: "images/room4.jpg", number: "104" },
+    room5: { name: "Luxury Suite", price: "Rp 1.200.000 / malam", img: "images/room5.jpg", number: "105" },
+    room6: { name: "Presidential Suite", price: "Rp 1.500.000 / malam", img: "images/room6.jpg", number: "106" },
+  };
+
+  const roomSelect = document.getElementById("roomSelect");
+  const preview = document.getElementById("roomPreview");
+  const roomImage = document.getElementById("roomImage");
+  const roomName = document.getElementById("roomName");
+  const roomPrice = document.getElementById("roomPrice");
+  const roomNumber = document.getElementById("roomNumber");
+
+  roomSelect.addEventListener("change", function () {
+    const selected = this.value;
+    if (selected && roomData[selected]) {
+      preview.style.display = "block";
+      preview.classList.add("show");
+      roomImage.src = roomData[selected].img;
+      roomName.textContent = roomData[selected].name;
+      roomPrice.textContent = roomData[selected].price;
+      roomNumber.value = roomData[selected].number;
+    } else {
+      preview.style.display = "none";
+      roomNumber.value = "";
+    }
+  });
+
+  // Ketika form disubmit
+  document.getElementById("bookingForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const inputs = this.querySelectorAll("input, select");
+    for (let input of inputs) {
+      if (input.hasAttribute("required") && !input.value) {
+        alert("⚠️ Harap lengkapi semua data sebelum melakukan booking!");
+        return;
+      }
+    }
+
+    // Munculkan modal
+    $('#bookingSuccessModal').modal('show');
+  });
+
+  // Tombol OK -> balik ke halaman utama
+  document.getElementById("okButton").addEventListener("click", function () {
+    window.location.href = "index.html";
+  });
+</script>
+
+    <!-- Script dari template Keto -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/custom.js"></script>
+  
+    <!-- Modal Booking Berhasil -->
+<div class="modal fade" id="bookingSuccessModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="border-radius:12px;">
+      <div class="modal-header">
+        <h5 class="modal-title">Booking Berhasil</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body" style="font-size:16px;">
+        Terima kasih! Kami menunggu kedatangan Anda.
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="okButton" class="btn btn-primary">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function () {
+
+    // Tampilkan modal jika form berhasil
+    $("#bookingForm").on("submit", function (e) {
+      e.preventDefault();
+      $("#bookingSuccessModal").modal("show");
+    });
+
+    // Tombol OK -> kembali ke home
+    $("#okButton").on("click", function () {
+      window.location.href = "index.html";
+    });
+
+  });
+</script>
+
+  </body>
+</html>
